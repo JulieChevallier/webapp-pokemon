@@ -7,6 +7,16 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install dependencies
+          command: |
+            sudo apt-get update -y
+            sudo apt-get install -y python3 python3-pip
+            pip3 install -r requirements.txt
+      - run:
+          name: Run tests with pytest
+          command: |
+            pytest test.py
+      - run:
           name: Install Docker
           command: |
             sudo apt-get update -y
@@ -37,20 +47,9 @@ jobs:
             done
             echo "Application did not start in time"
             exit 1
-      - run:
-          name: Install Python dependencies inside the container
-          command: |
-            docker exec webapp-julie pip install -r /app/requirements.txt
-      - run:
-          name: Run tests with pytest inside the container
-          command: |
-            docker exec webapp-julie pytest /app/test.py
 
 workflows:
   version: 2
   build_and_deploy:
     jobs:
       - build
-      - deploy:
-          requires:
-            - build
