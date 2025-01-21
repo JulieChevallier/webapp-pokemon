@@ -37,15 +37,14 @@ jobs:
             done
             echo "Application did not start in time"
             exit 1
-
-  deploy:
-    machine:
-      image: ubuntu-2004:current
-    steps:
       - run:
-          name: Deploy application
+          name: Install Python dependencies inside the container
           command: |
-            echo "Deploy the app here"
+            docker exec webapp-julie pip install -r /app/requirements.txt
+      - run:
+          name: Run tests with pytest inside the container
+          command: |
+            docker exec webapp-julie pytest /app/test.py
 
 workflows:
   version: 2
