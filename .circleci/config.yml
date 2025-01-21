@@ -16,17 +16,17 @@ jobs:
       - run:
           name: Build Docker image
           command: |
-            docker build -t moodify .
+            docker build -t webapp-julie .
       - run:
           name: Push Docker image
           command: |
             docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-            docker tag moodify $DOCKER_USER/moodify:latest
-            docker push $DOCKER_USER/moodify:latest
+            docker tag webapp-julie $DOCKER_USER/webapp-julie:latest
+            docker push $DOCKER_USER/webapp-julie:latest
       - run:
           name: Run and Test Container
           command: |
-            docker run -d -p 5000:5000 moodify
+            docker run -d -p 5000:5000 webapp-julie
             for i in {1..30}; do
                 if curl --fail http://127.0.0.1:5000; then
                     echo "Application is ready"
