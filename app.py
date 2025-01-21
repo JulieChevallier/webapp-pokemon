@@ -2,13 +2,13 @@ from flask import Flask, render_template, jsonify, request
 import requests
 
 app = Flask(__name__)
-
 POKEMON_FR_URL = "https://raw.githubusercontent.com/sindresorhus/pokemon/main/data/fr.json"
-response = requests.get(POKEMON_FR_URL)
 
-if response.status_code == 200:
+try:
+    response = requests.get(POKEMON_FR_URL)
+    response.raise_for_status()
     pokemon_fr_names = response.json()
-else:
+except Exception:
     pokemon_fr_names = []
 
 @app.route('/')
@@ -17,10 +17,11 @@ def home():
 
 @app.route('/autocomplete', methods=['GET'])
 def autocomplete():
-    query = request.args.get('q', '').lower()
-    suggestions = [name for name in pokemon_fr_names if name.lower().startswith(query)]  # Recherche stricte au début
-    suggestions_fr = suggestions[:5]
-    return jsonify(suggestions_fr)
+    query = request.args.get('q', '').lower().strip()
+    if not query:
+        return jsonify([])
+    suggestions = [name for name in pokemon_fr_names if name.lower().startswith(query)]
+    return jsonify(suggestions[:5])
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
