@@ -1,0 +1,57 @@
+version: 2.1
+
+jobs:
+  build:
+    machine:
+      image: ubuntu-2004:current
+    steps:
+      - checkout
+      - run:
+          name: Install Docker
+          command: |
+            sudo apt-get update -y
+            sudo apt-get upgrade -y
+            sudo apt-get install -y docker.io || tail -n 100 /var/log/apt/term.log
+            sudo apt-get clean
+      - run:
+          name: Build Docker image
+          command: |
+            docker build -t moodify .
+      - run:
+          name: Push Docker image
+          command: |
+            docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+            docker tag moodify $DOCKER_USER/moodify:latest
+            docker push $DOCKER_USER/moodify:latest
+      - run:
+          name: Run and Test Container
+          command: |
+            docker run -d -p 5000:5000 moodify
+            for i in {1..30}; do
+                if curl --fail http://127.0.0.1:5000; then
+                    echo "Application is ready"
+                    exit 0
+                fi
+                echo "Waiting for the application to be ready..."
+                sleep 1
+            done
+            echo "Application did not start in time"
+            exit 1
+
+  deploy:
+    machine:
+      image: ubuntu-2004:current
+    steps:
+      - run:
+          name: Deploy application
+          command: |
+            echo "Deploy the app here"
+
+workflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
