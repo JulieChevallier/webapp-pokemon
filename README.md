@@ -1,5 +1,6 @@
 Objectif :
 
-- Barre de recherche autocomplétion
-- Affichage toutes les cartes types pokédex
-- Affichage détails d'une carte (carte, nom, pv, type, desc?)
+- Barre de recherche autocomplétion OK
+- Affichage toutes les cartes types pokédex lorsque pas de recherche
+- Affichage détails d'une carte (cartes, pokémon image, nom, pv, type, desc?)
+- choix affichage par génération
