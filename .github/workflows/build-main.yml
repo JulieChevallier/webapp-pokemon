@@ -1,0 +1,70 @@
+name: Build and Push Docker Image for Main
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y python3 python3-pip
+          pip3 install -r requirements.txt
+
+      - name: Run tests with pytest
+        run: |
+          pytest test.py
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    if: success()
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install Docker
+        run: |
+          sudo apt-get update -y
+          sudo apt-get upgrade -y
+          sudo apt-get install -y docker.io || tail -n 100 /var/log/apt/term.log
+          sudo apt-get clean
+
+      - name: Build Docker image
+        run: |
+          docker build -t webapp-julie .
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USER }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Push Docker image
+        run: |
+          docker tag webapp-julie ${{ secrets.DOCKER_USER }}/webapp-julie:${{ github.sha }}
+          docker push ${{ secrets.DOCKER_USER }}/webapp-julie:${{ github.sha }}
+
+      - name: Run and Test Container
+        run: |
+          docker run -d -p 5000:5000 webapp-julie
+          for i in {1..30}; do
+              if curl --fail http://127.0.0.1:5000; then
+                  echo "Application is ready"
+                  exit 0
+              fi
+              echo "Waiting for the application to be ready..."
+              sleep 1
+          done
+          echo "Application did not start in time"
+          exit 1
