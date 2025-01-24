@@ -5,12 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Webapp-julie</title>
     <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="icon" href="https://onepiecedle.net/img/Pokedle.b65734f0.png" type="image/png">
     <script src="/static/script.js" defer></script>
 </head>
 <body>
-    <h1>Pokémon Search</h1>
-    <input type="text" id="search" placeholder="Search for a Pokémon">
+    <img src="/static/title.png" alt="Pokemon Search" id="page-title">
+    <div class="search-container">
+        <input type="text" id="search" placeholder="Search for a Pokémon">
+        <button id="search-button">▶</button> 
+    </div>
     <ul id="suggestions"></ul>
+
     <div id="pokemon-info" style="display:none;">
         <h2 id="pokemon-name"></h2>
         <p id="pokemon-description"></p>
@@ -21,4 +27,5 @@
         const pokemon_fr_names = {{ pokemon_fr_names | tojson }};
     </script>
 </body>
+<footer>Julie Chevallier ⸱ 2025 ⸱ IMT Mines Alès</footer>
 </html>
