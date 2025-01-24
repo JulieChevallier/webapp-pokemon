@@ -18,9 +18,20 @@
     <ul id="suggestions"></ul>
 
     <div id="pokemon-info" style="display:none;">
-        <h2 id="pokemon-name"></h2>
-        <p id="pokemon-description"></p>
-        <img id="pokemon-image" alt="Image du Pokémon">
+        <div class="pokemon-left">
+            <div class="pokemon-header">
+                <h2 id="pokemon-name"></h2>
+                <img src="/static/pokeball.png" alt="Pokéball" class="pokeball-icon">
+            </div>
+            <div class="pokemon-image-container">
+                <img id="pokemon-image" alt="Image du Pokémon">
+            </div>
+        </div>
+    
+        <div class="pokemon-right">
+            <div class="info-line"><strong>Description:</strong></div>
+            <p class="desc"></p>
+        </div>
     </div>
 
     <script>
