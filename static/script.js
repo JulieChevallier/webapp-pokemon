@@ -7,10 +7,19 @@ document.addEventListener('DOMContentLoaded', function () {
     const pokemonDescriptionElement = document.querySelector('.desc');
     const pokemonRightDiv = document.querySelector('.pokemon-right');
 
+    function toggleSuggestionsVisibility() {
+        if (suggestionsList.children.length > 0) {
+            suggestionsList.style.display = 'block';
+        } else {
+            suggestionsList.style.display = 'none';
+        }
+    }
+
     function clearSuggestions() {
         if (suggestionsList) {
             suggestionsList.innerHTML = '';
         }
+        toggleSuggestionsVisibility();
     }
 
     function clearRightPanel() {
@@ -35,6 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
             suggestionsList.appendChild(li);
         });
+        toggleSuggestionsVisibility();
     }
 
     function fetchPokemonInfoById(id) {
@@ -109,6 +119,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 .then(response => response.json())
                 .then(suggestions => {
                     updateSuggestions(suggestions);
+                })
+                .catch(() => {
+                    clearSuggestions();
                 });
         } else {
             clearSuggestions();
