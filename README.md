@@ -1,6 +1,6 @@
 # Pokemon Search
 
-Ce projet est une application web Flask permettant de rechercher des Pokémon en français, d'obtenir des suggestions de noms et d'afficher des informations détaillées sur chaque Pokémon grâce à l'API PokeAPI.
+Ce projet est une application web Flask permettant de rechercher des Pokémon en français, d'obtenir des suggestions de noms et d'afficher des informations détaillées sur chaque Pokémon grâce à l'API [PokeAPI](https://pokeapi.co/).
 ![Pokemon Search](/static/PokemonSearch.png)
 
 ## 2. Fonctionnalités
@@ -10,7 +10,7 @@ Ce projet est une application web Flask permettant de rechercher des Pokémon en
 ## 3. Technologies Utilisées
 - **Backend** : Flask (Python)
 - **Frontend** : HTML, CSS, JavaScript
-- **Base de données** : API PokeAPI & Liste des Pokémon en français récupérée depuis un fichier JSON sur GitHub
+- **Base de données** : API [PokeAPI](https://pokeapi.co/) & Liste des Pokémon en français récupérée depuis un fichier JSON sur GitHub [ici](https://raw.githubusercontent.com/sindresorhus/pokemon/main/data/en.json)
 - **Tests** : Pytest
 - **Déploiement** : Docker, GitHub Actions CI/CD
 
