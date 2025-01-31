@@ -106,7 +106,7 @@ h1 {
 #suggestions {
     position: absolute;
     top: calc(38% + 10px);
-    left: 47%;
+    left: 50%;
     transform: translateX(-50%);
     width: 300px;
     max-height: 200px;
