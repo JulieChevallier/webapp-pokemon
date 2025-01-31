@@ -1,11 +1,11 @@
 # Pokemon Search
 
-## 1. Introduction
 Ce projet est une application web Flask permettant de rechercher des Pokémon en français, d'obtenir des suggestions de noms et d'afficher des informations détaillées sur chaque Pokémon grâce à l'API PokeAPI.
+![Pokemon Search](/static/PokemonSearch.png)
 
 ## 2. Fonctionnalités
 - **Auto-complétion** : Suggestions de noms de Pokémon basées sur les premières lettres entrées.
-- **Recherche d'informations** : Affichage des détails d'un Pokémon (nom, description, image).
+- **Recherche d'informations** : Affichage des détails d'un Pokémon (nom, description, image, n° Pokédex, type(s), taille, poids).
 
 ## 3. Technologies Utilisées
 - **Backend** : Flask (Python)
@@ -26,15 +26,15 @@ Ce projet est une application web Flask permettant de rechercher des Pokémon en
 ### 4.2 Installation
 Clonez le projet et installez les dépendances :
 ```bash
-$ git clone https://github.com/votre-repo/webapp-pokemon.git
-$ cd webapp-pokemon
+$ git clone https://github.com/JulieChevallier/webapp-julie/
+$ cd webapp-julie
 $ pip install -r requirements.txt
 ```
 
 ### 4.3 Exécution Locale
 Lancez l'application Flask :
 ```bash
-$ python app.py
+$ python3 app.py
 ```
 L'application sera accessible à l'adresse : [http://127.0.0.1:5000](http://127.0.0.1:5000)
 
@@ -57,9 +57,9 @@ L'application sera accessible à l'adresse : [http://127.0.0.1:5000](http://127.
 Exemple de réponse :
 ```json
 {
-  "name": "Pikachu",
-  "description": "Pokémon souris électrique.",
-  "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"
+  "description": "Il lui arrive de remettre d’aplomb un Pikachu allié en lui envoyant une décharge électrique.",
+  "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
+  "name": "Pikachu"
 }
 ```
 
