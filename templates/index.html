@@ -11,8 +11,10 @@
 </head>
 <body>
     <img src="/static/title.png" alt="Pokemon Search" id="page-title">
+    <img src="/static/title2.png" alt="Pokemon Search" id="page-title2" style="display:none;">
     <div class="search-container">
         <input type="text" id="search" placeholder="Search for a Pokémon">
+        <button id="game-submit" style="display:none;">Submit</button>
     </div>
     <ul id="suggestions"></ul>
 
@@ -32,7 +34,21 @@
             <p class="desc"></p>
         </div>
     </div>
-
+    <div id="game" style="display:none;">
+        <table id="gameTable">
+            <tr>
+                <th>ID Pokédex</th>
+                <th>Nom</th>
+                <th>Type 1</th>
+                <th>Type 2</th>
+                <th>Taille</th>
+                <th>Poids</th>
+                <th>Génération</th>
+            </tr>
+        </table>
+        <button id="btn">New Game</button>
+    </div>
+    <img id="game-image" src="/static/game-image1.png" alt="Image du Pokémon">
     <script>
         const pokemon_fr_names = {{ pokemon_fr_names | tojson }};
     </script>
