@@ -1,11 +1,12 @@
 # Pokemon Search
 
-Ce projet est une application web Flask permettant de rechercher des Pokémon en français, d'obtenir des suggestions de noms et d'afficher des informations détaillées sur chaque Pokémon grâce à l'API [PokeAPI](https://pokeapi.co/).
+Ce projet est une application web Flask permettant de rechercher des Pokémon en français, d'obtenir des suggestions de noms, d'afficher des informations détaillées sur chaque Pokémon ainsi qu'un jeu pour découvrir le pokémon caché. Ce code à été réalisé grâce à l'API [PokeAPI](https://pokeapi.co/).
 ![Pokemon Search](/static/PokemonSearch.png)
 
 ## 2. Fonctionnalités
 - **Auto-complétion** : Suggestions de noms de Pokémon basées sur les premières lettres entrées.
 - **Recherche d'informations** : Affichage des détails d'un Pokémon (nom, description, image, n° Pokédex, type(s), taille, poids).
+- **Mode Jeu** : Devinez un Pokémon en comparant ses caractéristiques avec un Pokémon aléatoire.
 
 ## 3. Technologies Utilisées
 - **Backend** : Flask (Python)
@@ -60,6 +61,23 @@ Exemple de réponse :
   "description": "Il lui arrive de remettre d’aplomb un Pikachu allié en lui envoyant une décharge électrique.",
   "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
   "name": "Pikachu"
+}
+```
+### 5.4 Mode Jeu
+- **GET /random_pokemon**
+- Retourne un Pokémon aléatoire pour servir de référence dans le mode jeu.
+
+Exemple de réponse :
+
+```json
+{
+  "id": 150,
+  "name": "Mewtwo",
+  "type_1": "Psy",
+  "type_2": null,
+  "height": 20,
+  "weight": 1220,
+  "generation": 1
 }
 ```
 
