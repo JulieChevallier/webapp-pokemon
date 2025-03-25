@@ -27,8 +27,8 @@ Ce projet est une application web Flask permettant de rechercher des Pokémon en
 ### 4.2 Installation
 Clonez le projet et installez les dépendances :
 ```bash
-$ git clone https://github.com/JulieChevallier/webapp-julie/
-$ cd webapp-julie
+$ git clone https://github.com/JulieChevallier/webapp-pokemon/
+$ cd webapp-pokemon
 $ pip install -r requirements.txt
 ```
 
@@ -101,12 +101,12 @@ Les tests vérifient :
 
 ### 7.1 Construction de l'image Docker
 ```bash
-$ docker build -t webapp-julie .
+$ docker build -t webapp-pokemon .
 ```
 
 ### 7.2 Exécution du Conteneur
 ```bash
-$ docker run -p 5000:5000 webapp-julie
+$ docker run -p 5000:5000 webapp-pokemon
 ```
 L'application sera accessible à l'adresse : [http://127.0.0.1:5000](http://127.0.0.1:5000)
 ---
